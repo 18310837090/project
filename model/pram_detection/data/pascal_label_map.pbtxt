@@ -1,0 +1,20 @@
+item {
+  id: 1
+  name: 'pram'
+}
+
+item {
+  id: 2
+  name: 'luggage'
+}
+
+item {
+  id: 3
+  name: 'suitcase'
+}
+
+item {
+  id: 4
+  name: 'shoutibox'
+}
+

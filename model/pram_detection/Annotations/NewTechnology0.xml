@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<annotation verified="no">
+    <source>
+        <database>Unknown</database>
+    </source>
+    <object>
+        <bndbox>
+            <xmin>231</xmin>
+            <ymin>12</ymin>
+            <ymax>412</ymax>
+            <xmax>653</xmax>
+        </bndbox>
+        <difficult>0</difficult>
+        <pose>Unspecified</pose>
+        <name>pram</name>
+        <truncated>0</truncated>
+    </object>
+    <segmented>0</segmented>
+    <path>/usr/local/machine_learning/pycharm_workspace/yinerche_detector/Annotations/NewTechnology0.xml</path>
+    <folder>JPEGImages</folder>
+    <size>
+        <width>900</width>
+        <depth>3</depth>
+        <height>412</height>
+    </size>
+    <filename>NewTechnology0</filename>
+</annotation>
