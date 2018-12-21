@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>红绿灯最优配时系统</title>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">红绿灯最优配时系统Login</div>
+        <div class="card-body">
+          <!--消息显示-->
+          <span style="color: red" th:text="${message}"><br></span>
+          <form th:action="@{/login}" th:object="${uc01_010_loginInput}"  method="POST">
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="text" id="inputUsername" name="id" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
+                <label for="inputUsername">输入帐号</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" name="passWord" class="form-control" placeholder="Password" required="required">
+                <label for="inputPassword">输入密码</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="remember-me">记住密码
+                </label>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="确认提交"/>
+          </form>
+          <div class="text-center">
+            <!--<a class="small mt-3" th:href="@{/register}">注册账户</a>-->
+            <a class="small" th:href="@{/}">返回登录页面</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

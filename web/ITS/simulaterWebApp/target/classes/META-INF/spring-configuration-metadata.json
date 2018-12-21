@@ -1,0 +1,177 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "",
+      "type": "com.ncit.common.model.TmpTimeParamConfig"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "",
+      "type": "com.ncit.common.model.RemoteProperties"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "",
+      "type": "com.ncit.common.model.Config"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "c-s-v-f-i-l-e-p-a-t-h",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "enter-page",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "enter-page",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "he-shell-command1",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "he-shell-command2",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "he-shell-command3",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "i-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "i-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "p-a-s-s-w-o-r-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "p-a-s-s-w-o-r-d",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "p-a-t-h-1",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "p-a-t-h-1-n-e-w",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "p-a-t-h-2",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "p-a-t-h-2-n-e-w",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "r-e-s-u-l-t-a-s-s-e-s-s-shell-command",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "root-directory",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "root-log-directory",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "status",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "status",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "u-s-e-r-n-a-m-e",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.Config",
+      "name": "u-s-e-r-n-a-m-e",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc01-03-after-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc01-03-begin-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc02-02-after-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc02-02-after-time",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc02-02-begin-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc02-02-begin-time",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc03-02-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc03-02-time-from",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.TmpTimeParamConfig",
+      "name": "uc03-02-time-to",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.ncit.common.model.RemoteProperties",
+      "name": "x-l-s-x-f-i-l-e-p-a-t-h",
+      "type": "java.lang.String"
+    }
+  ]
+}

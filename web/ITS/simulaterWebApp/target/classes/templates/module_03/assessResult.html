@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>红绿灯最优配时系统</title>
+
+  <!-- Bootstrap core CSS-->
+  <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+
+  <script th:inline="javascript">
+      //关闭浏览器记录当前页面
+      window.onbeforeunload=function(){
+          //必须使用beforeunload
+          var uri = window.location.pathname;
+          $.ajax({
+              url:'simulaterWebApp/closeBrowser',
+              data:{
+                  lastUrl: uri
+              },
+              async:false                //必须采用同步方法
+          });
+      }
+
+
+    var stompClient = null;
+    window.onload = function () {
+        var status = [[${status}]];
+        if (status == "1"){
+            // show();
+        }
+
+        var log1 = [[${log1}]];
+        var log2 = [[${log2}]];
+        $("#webSocketInfo2").html(log1);
+        $("#webSocketInfo1").html(log2);
+
+        if(stompClient != null) {
+            stompClient.disconnect();
+        }
+        // $("#connect").prop("disabled",true);
+        // 建立连接对象（还未发起连接）
+        // var socket = new SockJS('http://localhost:8080/simulaterWebApp/websocket');
+        var socket = new SockJS('websocket');
+        console.log(socket);
+        // 获取 STOMP 子协议的客户端对象
+        stompClient = Stomp.over(socket);
+        // 向服务器发起websocket连接并发送CONNECT帧
+        stompClient.connect({}, function () {
+            stompClient.subscribe('/ws/uc03_02Log2', function (event) {
+                $("#webSocketInfo1").append(event.body+"<br>");
+                $("#webSocketInfo1").scrollTop($("#webSocketInfo1")[0].scrollHeight);//滚动条沉在底部
+                if (event.body == "End") {
+                    // hide();
+                }
+            });
+            stompClient.subscribe('/ws/uc03_02Log1', function (event) {
+                $("#webSocketInfo2").append(event.body+"<br>");
+                $("#webSocketInfo2").scrollTop($("#webSocketInfo2")[0].scrollHeight);//滚动条沉在底部
+            });
+        }, function errorCallBack(error) {
+            console.log("***************************"+error);
+            // 连接失败时（服务器响应 ERROR 帧）的回调方法
+        });
+
+        $("#stop").click(function() {
+            disconnect();
+            // hide();
+        });
+    }
+
+
+
+    // 开始连接
+    function connect() {
+        var date = document.getElementById("date").value;
+
+        var timeFrom = document.getElementById("timeFrom");
+        timeFrom = timeFrom.options[timeFrom.selectedIndex].value;
+
+        var timeTo = document.getElementById("timeTo");
+        timeTo = timeTo.options[timeTo.selectedIndex].value;
+        if (date == ""){
+            alert("日期不能为空！");
+            return;
+        }else if (parseInt(timeFrom)>parseInt(timeTo)){
+            alert("时间from不能超过时间to！");
+            return;
+        }
+        //开始隐藏
+        // show();
+        //清除日志
+        clean();
+        //发送请求
+
+        $.ajax({
+            url:"/simulaterWebApp/assessResultByDatetimeStart",
+            type:"get",
+            data:{date:date,timeFrom:timeFrom,timeTo:timeTo},
+            success:function(data){
+                $("#message").append(data);
+                // console(data);
+            },
+            error:function(e){
+                console.log(e);
+                // hide();
+            }
+        });
+
+    }
+
+    //关闭双通道
+    function disconnect(){
+        $.ajax({
+            url:"/simulaterWebApp/assessResultByDatetimeStop",
+            type:"get",
+            data:null,
+            success:function(data){
+                $("#message").append(data);
+                // console(data);
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
+    }
+
+    //清空日志
+    function clean() {
+        $("#webSocketInfo1").text(null);
+        $("#webSocketInfo2").text(null);
+    }
+
+    //显示隐藏层和弹出层
+    function show() {
+        var hideobj=document.getElementById("page-top");
+        hidebg.style.display="block";  //显示隐藏层
+        hidebg.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+        document.getElementById("hidebox").style.display="block";  //显示弹出层
+        // alert("请耐心等待")
+    }
+    //去除隐藏层和弹出层
+    function hide() {
+        document.getElementById("hidebg").style.display="none";
+        document.getElementById("hidebox").style.display="none";
+    }
+
+  </script>
+
+    <style>
+        body {
+        }
+        #hidebg {
+            position:absolute;
+            left:0px;
+            top:0px;
+            text-align: center;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none;
+            z-Index:2;
+        }
+        #hidebox {
+            position:absolute;
+            width:300px;
+            height:200px;
+            top:200px;
+            left:40%;
+            text-align: center;
+            background-color:gray;
+            display:none;
+            cursor:pointer;
+            z-Index:3;
+        }
+    </style>
+
+</head>
+
+                    <!--隐藏层-->
+                    <div id="hidebg"></div>
+                    <div id="hidebox">请耐心等待...
+                        <br><br><br><br><br><br><button id="stop" class="btn btn-primary" >终止评价</button>
+                    </div>
+
+<body id="page-top">
+<!--顶部菜单栏-->
+<div th:replace="header"></div>
+
+<div id="wrapper">
+
+  <!--左侧菜单栏-->
+  <div th:replace="navBar"></div>
+
+  <div id="content-wrapper">
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active">配时结果管理</li>
+          <li class="breadcrumb-item">
+            <a th:href="@{/assessResult}">结果评价</a>
+          </li>
+            <li style="color: red" id="message" class="breadcrumb-item">
+            </li>
+        </ol>
+        <!--消息显示-->
+        <span style="color: red" th:text="${message}"><br></span>
+        <div class="card mb-3">
+          <div class="card-header">
+              <label>日期：<span style="color: red">*</span></label>
+                  <input id="date" type="date" th:value="${beginDate}"/>
+              <label>
+                  <span style="color: gray">(</span>
+                  <span style="color: red">*</span>
+                  <span style="color: gray">必填)</span>
+              </label><br>
+              <label>时间：<span style="color: red">*</span></label>
+                  <select id="timeFrom">
+                      <option th:selected="${timeFrom == '0'}">0</option>
+                      <option th:selected="${timeFrom == '1'}">1</option>
+                      <option th:selected="${timeFrom == '2'}">2</option>
+                      <option th:selected="${timeFrom == '3'}">3</option>
+                      <option th:selected="${timeFrom == '4'}">4</option>
+                      <option th:selected="${timeFrom == '5'}">5</option>
+                      <option th:selected="${timeFrom == '6'}">6</option>
+                      <option th:selected="${timeFrom == '7'}">7</option>
+                      <option th:selected="${timeFrom == '8'}">8</option>
+                      <option th:selected="${timeFrom == '9'}">9</option>
+                      <option th:selected="${timeFrom == '10'}">10</option>
+                      <option th:selected="${timeFrom == '11'}">11</option>
+                      <option th:selected="${timeFrom == '12'}">12</option>
+                      <option th:selected="${timeFrom == '13'}">13</option>
+                      <option th:selected="${timeFrom == '14'}">14</option>
+                      <option th:selected="${timeFrom == '15'}">15</option>
+                      <option th:selected="${timeFrom == '16'}">16</option>
+                      <option th:selected="${timeFrom == '17'}">17</option>
+                      <option th:selected="${timeFrom == '18'}">18</option>
+                      <option th:selected="${timeFrom == '19'}">19</option>
+                      <option th:selected="${timeFrom == '20'}">20</option>
+                      <option th:selected="${timeFrom == '21'}">21</option>
+                      <option th:selected="${timeFrom == '22'}">22</option>
+                      <option th:selected="${timeFrom == '23'}">23</option>
+                  </select>
+                  <span>~~</span>
+                  <select id="timeTo">
+                      <option th:selected="${timeTo == '0'}">0</option>
+                      <option th:selected="${timeTo == '1'}">1</option>
+                      <option th:selected="${timeTo == '2'}">2</option>
+                      <option th:selected="${timeTo == '3'}">3</option>
+                      <option th:selected="${timeTo == '4'}">4</option>
+                      <option th:selected="${timeTo == '5'}">5</option>
+                      <option th:selected="${timeTo == '6'}">6</option>
+                      <option th:selected="${timeTo == '7'}">7</option>
+                      <option th:selected="${timeTo == '8'}">8</option>
+                      <option th:selected="${timeTo == '9'}">9</option>
+                      <option th:selected="${timeTo == '10'}">10</option>
+                      <option th:selected="${timeTo == '11'}">11</option>
+                      <option th:selected="${timeTo == '12'}">12</option>
+                      <option th:selected="${timeTo == '13'}">13</option>
+                      <option th:selected="${timeTo == '14'}">14</option>
+                      <option th:selected="${timeTo == '15'}">15</option>
+                      <option th:selected="${timeTo == '16'}">16</option>
+                      <option th:selected="${timeTo == '17'}">17</option>
+                      <option th:selected="${timeTo == '18'}">18</option>
+                      <option th:selected="${timeTo == '19'}">19</option>
+                      <option th:selected="${timeTo == '20'}">20</option>
+                      <option th:selected="${timeTo == '21'}">21</option>
+                      <option th:selected="${timeTo == '22'}">22</option>
+                      <option th:selected="${timeTo == '23'}">23</option>
+                    </select>
+
+              <button id="connect" class="btn btn-primary" onclick="connect()" >开始评价</button>
+              <button id="stop1" class="btn btn-primary" onclick="disconnect()" >终止评价</button>
+              <button id="clean" class="btn btn-primary" onclick="clean()" >清空日志</button>
+          </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <div id="webSocketInfo1"  style="height: 480px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px; ">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <div id="webSocketInfo2"  style="height: 480px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+      </div>
+      <!-- /.container-fluid -->
+    </form>
+
+    <!--底部信息栏-->
+    <div th:replace="bottom"></div>
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+</body>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Page level plugin JavaScript-->
+<script th:src="@{vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/sb-admin.min.js}"></script>
+
+<!-- Demo scripts for this page-->
+<script th:src="@{js/demo/datatables-demo.js}"></script>
+<script th:src="@{js/demo/chart-area-demo.js}"></script>
+
+<script th:src="@{js/sockjs.min.js}"></script>
+<script th:src="@{js/stomp.min.js}"></script>
+</html>

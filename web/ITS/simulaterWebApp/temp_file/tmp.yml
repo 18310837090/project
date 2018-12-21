@@ -1,0 +1,12 @@
+# uc01_03页面的param cache
+  uc01_03_beginDate: 2018-06-01
+  uc01_03_afterDate: 2018-09-15
+# uc02_02页面的param cache
+  uc02_02_beginDate: 2018-09-15
+  uc02_02_afterDate: 2018-09-16
+  uc02_02_beginTime: 7
+  uc02_02_afterTime: 8
+# uc03_02页面的param cache
+  uc03_02_date: 2018-09-15
+  uc03_02_timeFrom: 0
+  uc03_02_timeTo: 11

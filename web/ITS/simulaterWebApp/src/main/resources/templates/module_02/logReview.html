@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>红绿灯最优配时系统</title>
+
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+
+    <script th:src="@{js/ItsAjax.js}"></script>
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+
+
+    <script th:inline="javascript">
+
+        function getLogInfs(path) {
+            $.ajax({
+                    type: 'POST',
+                    url: '/simulaterWebApp/getLogInfoLink',
+                    data: {
+                        directory: path
+                    },
+                    success: function(logInfs) {
+                        $("#log-container div").html(logInfs.replace(/\s/g,'&nbsp;'));
+                    },
+                    error:function() {
+                        alert("错误！！");
+                    }
+            });
+        }
+
+        $(document).ready(function(){
+            $("a.logLike").click(function() {
+                getLogInfs($(this).attr("id"));
+            });
+        });
+
+    </script>
+
+</head>
+
+<body id="page-top">
+
+<!--顶部菜单栏-->
+<div th:replace="header"></div>
+
+<div id="wrapper">
+
+    <!--左侧菜单栏-->
+    <div th:replace="navBar"></div>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">参数优化启动</li>
+
+                <li class="breadcrumb-item">
+                    <a th:href="@{/logReviewInit}">日志回看</a>
+                </li>
+            </ol>
+
+            <div class="card mb-3">
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <div class="table-responsive" style="height: 600px; overflow-y: scroll;">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <tbody>
+                                        <tr th:each="info : ${fileinfos}">
+                                            <td th:if="${info.getFile_folder_kbn() == '2'}">
+                                                <a href="javascript:void(0);" class="logLike" th:id ="${info.getAbsolute_path()}" th:text="${info.getName()}"></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-label-group">
+
+                                <div id="log-container" style="height: 600px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+                                    <div></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!--底部信息栏-->
+        <div th:replace="bottom"></div>
+
+    </div>
+
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Page level plugin JavaScript-->
+<script th:src="@{vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/sb-admin.min.js}"></script>
+
+<!-- Demo scripts for this page-->
+<script th:src="@{js/demo/datatables-demo.js}"></script>
+<script th:src="@{js/demo/chart-area-demo.js}"></script>
+
+</body>

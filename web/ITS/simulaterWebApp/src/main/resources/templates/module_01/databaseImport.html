@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>红绿灯最优配时系统</title>
+
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+    <link th:href="@{css/skin/jedate.css}" type="text/css" rel="stylesheet" >
+
+    <script th:inline="javascript">
+        //关闭浏览器记录当前页面
+        window.onbeforeunload=function(){
+            //必须使用beforeunload
+            var uri = window.location.pathname;
+            $.ajax({
+                url:'simulaterWebApp/closeBrowser',
+                data:{
+                    lastUrl: uri
+                },
+                async:false                //必须采用同步方法
+            });
+        }
+
+        var stompClient = null;
+
+        window.onload = function(){
+            var log1 = [[${log1}]];
+            var log2 = [[${log2}]];
+            $("#log2").html(log1);
+            $("#log1").html(log2);
+
+            var status = [[${status}]];
+            if (status == "1"){
+                // show();
+            }
+
+            $("#webSocketInfo").attr("disable", true);
+            // 建立连接对象（还未发起连接）
+            // var socket = new SockJS('http://localhost:8080/simulaterWebApp/websocket');
+            var socket = new SockJS('websocket');
+            console.log(socket);
+            // 获取 STOMP 子协议的客户端对象
+            stompClient = Stomp.over(socket);
+            // 向服务器发起websocket连接并发送CONNECT帧
+            stompClient.connect({}, function () {
+                // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
+                stompClient.subscribe('/ws/uc01_03Log1', function (event) {
+                    $("#log1").append(event.body + "<br/>");
+                    $('#log1').scrollTop($('#log1')[0].scrollHeight );                // 滚动条沉在底部
+                    if (event.body == "End"){
+                        // hide();
+                        $("#databaseImport").attr("disabled",false);
+                    }
+                });
+                stompClient.subscribe('/ws/uc01_03Log2', function (event) {
+                    $("#log2").append(event.body + "<br/>");
+                    $('#log2').scrollTop($('#log2')[0].scrollHeight );                // 滚动条沉在底部
+                });
+            }, function errorCallBack(error) {
+                console.log("***************************"+error);
+                // 连接失败时（服务器响应 ERROR 帧）的回调方法
+            });
+
+            $("#stop").click(function() {
+                disconnect();
+                // hide();
+            });
+        };
+
+        //关闭双通道
+        function disconnect(){
+            $.ajax({
+                url:'/simulaterWebApp/databaseImportEnd',
+                type: 'get',
+                data:null,
+                success:function(data){
+                    $("#message").append(data);
+                },
+                error:function(e){
+                    console.log(e);
+                    // hide();
+                }
+            });
+        }
+
+
+        function connect() {
+            // 开始时间
+            var beginDate =  $("#beginDate").val();
+            // 结束时间
+            var afterDate = $("#afterDate").val();
+            if (beginDate == ""){
+                alert("开始日期不能为空！");
+                return;
+            }else if (afterDate == ""){
+                alert("结束日期不能为空！");
+                return;
+            }else if (beginDate>afterDate){
+                alert("开始日期不能大于结束日期！");
+                return;
+            }
+            //开始隐藏
+            // show();
+            //清除日志
+            clean();
+            //发送请求
+
+            $.ajax({
+                type:'post',
+                url:'/simulaterWebApp/databaseImport',
+                data:{
+                       beginDate:beginDate,
+                       afterDate:afterDate
+                },
+                success:function(data){
+                    console.log(data);
+                    $("#databaseImport").attr("disabled",true);
+                },
+                error:function(e){
+                    console.log(e);
+                    // hide();
+                }
+            });
+        }
+        function clean() {
+            $("#log1").html("");
+            $("#log2").html("");
+        }
+
+        //显示隐藏层和弹出层
+        function show() {
+            var hideobj=document.getElementById("page-top");
+            hidebg.style.display="block";  //显示隐藏层
+            hidebg.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+            document.getElementById("hidebox").style.display="block";  //显示弹出层
+        }
+        //去除隐藏层和弹出层
+        function hide() {
+            document.getElementById("hidebg").style.display="none";
+            document.getElementById("hidebox").style.display="none";
+        }
+    </script>
+
+<style>
+    body {
+    }
+    #hidebg {
+        position:absolute;
+        left:0px;
+        top:0px;
+        text-align: center;
+        background-color:#000;
+        width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+        filter:alpha(opacity=60);  /*设置透明度为60%*/
+        opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+        display:none;
+        z-Index:2;
+    }
+    #hidebox {
+        position:absolute;
+        width:300px;
+        height:200px;
+        top:200px;
+        left:40%;
+        text-align: center;
+        background-color:gray;
+        display:none;
+        cursor:pointer;
+        z-Index:3;
+    }
+</style>
+</head>
+                        <!--隐藏层-->
+                        <div id="hidebg"></div>
+                        <div id="hidebox">请耐心等待...
+                            <br><br><br><br><br><br><button id="stop" class="btn btn-primary" >终止导入</button>
+                        </div>
+
+<body id="page-top">
+
+<!--顶部菜单栏-->
+<div th:replace="header"></div>
+
+<div id="wrapper">
+
+    <!--左侧菜单栏-->
+    <div th:replace="navBar"></div>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">交通量数据管理</li>
+
+                <li class="breadcrumb-item">
+                    <a th:href="@{/databaseImportInit}">数据库导入</a>
+                </li>
+            </ol>
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-search-plus"></i>
+                    导入条件
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label>开始日期：<span style="color: red">*</span></label>
+                                <input id="beginDate" type="date" th:value="${beginDate}"/>
+                                <label>结束日期：<span style="color: red">*</span></label>
+                                <input id="afterDate" type="date" th:value="${afterDate}"/>
+                                <label>
+                                    <span style="color: gray">(</span>
+                                    <span style="color: red">*</span>
+                                    <span style="color: gray">必填)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="connect()">数据库导入</button>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    导入结果
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                <div id="log1" style="height: 420px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-label-group">
+                                <div id="log2" style="height: 420px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- /.container-fluid -->
+
+        <!--底部信息栏-->
+        <div th:replace="bottom"></div>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+</body>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Page level plugin JavaScript-->
+<script th:src="@{vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/sb-admin.min.js}"></script>
+
+<!-- Demo scripts for this page-->
+<script th:src="@{js/demo/datatables-demo.js}"></script>
+<script th:src="@{js/demo/chart-area-demo.js}"></script>
+
+<script th:src="@{js/sockjs.min.js}"></script>
+<script th:src="@{js/stomp.min.js}"></script>
+<script th:src="@{js/jedate.min.js}"></script>
+</html>
