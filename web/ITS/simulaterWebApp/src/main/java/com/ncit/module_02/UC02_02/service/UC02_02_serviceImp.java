@@ -237,14 +237,14 @@ public class UC02_02_serviceImp implements UC02_02_service {
                 ps = new PrintStream(new FileOutputStream(file));
                 process = Runtime.getRuntime().exec(shellCommand);
                 processList.add(process);
-//                bufrIn = new BufferedReader(new InputStreamReader(process.getInputStream(), "Shift_JIS"));
-//                bufrError = new BufferedReader(new InputStreamReader(process.getErrorStream(), "Shift_JIS"));
+                bufrIn = new BufferedReader(new InputStreamReader(process.getInputStream(), "Shift_JIS"));
+                bufrError = new BufferedReader(new InputStreamReader(process.getErrorStream(), "Shift_JIS"));
                 // 读取输出
-//                while ((line = bufrIn.readLine()) != null || (line = bufrError.readLine()) != null) {
+                while ((line = bufrIn.readLine()) != null || (line = bufrError.readLine()) != null) {
 //                    messagingTemplate.convertAndSend("/ws/masLog"+index,line + "\r\n");
-//                    ps.append(line + "\r\n");
+                    ps.append(line + "\r\n");
 //                    Thread.currentThread().sleep(5);
-//                }
+                }
                 if (stopThreadID) {
                     throw new Exception("stopThread 终止进程");
                 }
@@ -405,16 +405,11 @@ public class UC02_02_serviceImp implements UC02_02_service {
         String beginDate = null,afterDate = null,beginTime = null,afterTime = null;
         if (remoteProperties.getStatus().equals("0")){
             // 开始日期
-//            beginDate = GetTimeUtil.getNowDate();
-//            // 结束日期
-//            afterDate = beginDate;
-//            beginTime = "0";
-//            afterTime = "0";
-            beginDate = "2018-09-15";
+            beginDate = GetTimeUtil.getNowDate();
             // 结束日期
-            afterDate = "2018-09-15";
-            beginTime = "6";
-            afterTime = "7";
+            afterDate = beginDate;
+            beginTime = "0";
+            afterTime = "0";
 
         }else if (remoteProperties.getStatus().equals("1")){
             beginDate = tmpTimeParamConfig.getUc02_02_beginDate();
