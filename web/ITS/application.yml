@@ -1,0 +1,32 @@
+db: # db
+  ID: admin
+  USERNAME: admin
+  PASSWORD: admin
+
+path:
+  # uc03_02页面的xlsx路径
+  XLSX_FILE_PATH: /home/xiaojing/work/realDsim_v2.0.0_huaxi/output/evalResult
+  # uc03_02页面的csv路径
+  CSV_FILE_PATH: /home/xiaojing/work/realDsim_v2.0.0_huaxi/data/opt_output
+  # uc03_02页面的启动结果评价命令
+  RESULTASSESS_ShellCommand: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/resultEvaluation_single.sh
+  # uc02_02页面的启动结果评价命令
+  he_ShellCommand1: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/optimization/multiagent-simulator/run-sim-server.sh
+  he_ShellCommand2: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/realDsim.sh
+  he_ShellCommand3: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/DB_insert.sh
+  # guiyang-1sim.yml正式文件
+  PATH_1: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/optimization/signal-opt-beagle/guiyang-1sim.yml
+  # guiyang-1sim.yml对应需要修改的临时文件
+  PATH_1_NEW: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/optimization/signal-opt-beagle/guiyang-1sim_pg_new.yml
+  # sim-configuration.yml正式文件
+  PATH_2: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/optimization/multiagent-simulator/sim-configuration.yml
+  # sim-configuration.yml对应需要修改的临时文件
+  PATH_2_NEW: /home/xiaojing/work/realDsim_v2.0.0_huaxi/script/optimization/multiagent-simulator/sim-configuration_new.yml
+  # 根目录
+  rootDirectory: /home/xiaojing/work/realDsim_v2.0.0_huaxi/data/sourcedata
+  # 日志根目录
+  rootLogDirectory: /home/xiaojing/work/realDsim_v2.0.0_huaxi/web/log
+
+ThreadIdentity:
+  status: 0
+  enterPage: /simulaterWebApp/index

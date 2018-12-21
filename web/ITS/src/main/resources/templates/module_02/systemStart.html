@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>红绿灯最优配时系统</title>
+
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap_nav.css}">
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+    <link th:href="@{css/skin/jedate.css}" type="text/css" rel="stylesheet" >
+
+    <script th:inline="javascript">
+        //关闭浏览器记录当前页面
+        window.onbeforeunload=function(){
+            //必须使用beforeunload
+            var uri = window.location.pathname;
+            $.ajax({
+                url:'simulaterWebApp/closeBrowser',
+                data:{
+                    enterPage: uri
+                },
+                async:false                //必须采用同步方法
+            });
+        }
+
+
+        window.onload = function(){
+
+            var mas_num = [[${mas_num}]];
+            var status = [[${status}]];
+            if (status == "1"){
+                // show();
+            }
+            var stompClient = null;
+
+            var log1 = [[${log1}]];
+            var log2 = [[${log2}]];
+            var log3 = [[${log3}]];
+            var log4 = [[${log4}]];
+
+            for (var i=1; i<=mas_num; i++) {
+
+                if (i == 1) {
+                    $("#masall").append("<div id=\"mas_log" + i + "\" style=\"height: 250px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;\"></div>");
+                } else {
+                    $("#masall").append("<div id=\"mas_log" + i + "\" hidden style=\"height: 250px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;\"></div>");
+                }
+
+                var liObj ="<li><a href=\"javascript:void(0);\" onclick=\"showDiv('mas_log"+ i + "')\" data-toggle=\"tab\">mas" + i + "</a></li>";
+                $("#myTab").append(liObj);
+            }
+            $("#mas_log1").html(log1);
+            $("#mas_log2").html(log2);
+            $("#ga_log").html(log3);
+            $("#log1").html(log4);
+
+            // 建立连接对象（还未发起连接）
+            var socket = new SockJS('websocket');
+            // 获取 STOMP 子协议的客户端对象
+            stompClient = Stomp.over(socket);
+            // 向服务器发起websocket连接并发送CONNECT帧
+            stompClient.connect({}, function () {
+                stompClient.subscribe('/ws/identityLog', function (event) {
+                    $("#log1").append(event.body + "<br/>");
+                    $("#log1").scrollTop($("#log1")[0].scrollHeight );
+                    if (event.body == "End") {
+                        // hide();
+                    }
+                });
+
+                stompClient.subscribe('/ws/masLog1', function (event) {
+                        $("#mas_log1").append(event.body + "<br/>");
+                        $("#mas_log1").scrollTop($("#mas_log1")[0].scrollHeight );
+
+                });
+                stompClient.subscribe('/ws/masLog2', function (event) {
+                    $("#mas_log2").append(event.body + "<br/>");
+                    $("#mas_log2").scrollTop($("#mas_log2")[0].scrollHeight );
+
+                });
+
+                stompClient.subscribe('/ws/gaLog', function (event) {
+                    $("#ga_log").append(event.body + "<br/>");
+                    $("#ga_log").scrollTop($("#ga_log")[0].scrollHeight );
+                });
+
+            }, function errorCallBack(error) {
+                // 连接失败时（服务器响应 ERROR 帧）的回调方法
+                console.log("***************************"+error);
+                // hide();
+            });
+            
+            $("#startUp").click(function() {
+                clean();
+                connect();
+            });
+
+            $("#stop").click(function() {
+                stop();
+                // hide();
+            });
+        }
+
+        function stop() {
+            $.ajax({
+                type:'get',
+                url:'/simulaterWebApp/systemStop',
+                data:{
+                },
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
+        }
+
+        
+        function connect() {
+            var dateStart = document.getElementById("dateStart").value;
+            var dateEnd = document.getElementById("dateEnd").value;
+
+            var timeFrom = document.getElementById("timeFrom");
+            timeFrom = timeFrom.options[timeFrom.selectedIndex].value;
+
+            var timeTo = document.getElementById("timeTo");
+            timeTo = timeTo.options[timeTo.selectedIndex].value;
+            if (dateStart == ""){
+                alert("开始日期不能为空！");
+                return;
+            }else if (dateEnd == ""){
+                alert("结束日期不能为空！");
+                return;
+            }else if (dateStart>dateEnd){
+                alert("开始日期不能大于结束日期！");
+                return;
+            }else if (dateStart == dateEnd){
+                if (parseInt(timeFrom)>parseInt(timeTo)){
+                    alert("开始时间不能大于结束时间！");
+                    return;
+                }
+            }
+            // show();
+
+            $.ajax({
+                type:'get',
+                url:'/simulaterWebApp/systemStartUp',
+                data:{
+                    beginDate: dateStart,
+                    afterDate: dateEnd,
+                    beginTime: timeFrom,
+                    afterTime: timeTo,
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            });
+        }
+
+        function clean() {
+            //清除log;
+            var objlength =  $("#masall").children("div").length;
+            for (var i=0; i<objlength; i++) {
+                var item = $("#masall").children("div")[i];
+                $("#"+item.id).html("");
+            }
+
+            $("#log1").html("");
+            $("#ga_log").html("");
+        }
+
+        function showDiv(id) {
+            var objlength =  $("#masall").children("div").length;
+            for (var i=0; i<objlength; i++) {
+                var item = $("#masall").children("div")[i];
+                if (item.id == id) {
+                    $("#"+item.id).attr("hidden", false);
+                    $("#"+ item.id).scrollTop($("#"+ item.id)[0].scrollHeight );
+                } else {
+                    $("#"+item.id).attr("hidden", true);
+                }
+            }
+        }
+
+        //显示隐藏层和弹出层
+        function show() {
+            var hideobj=document.getElementById("page-top");
+            hidebg.style.display="block";  //显示隐藏层
+            hidebg.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+            document.getElementById("hidebox").style.display="block";  //显示弹出层
+        }
+        //去除隐藏层和弹出层
+        function hide() {
+            document.getElementById("hidebg").style.display="none";
+            document.getElementById("hidebox").style.display="none";
+        }
+
+    </script>
+
+<style>
+    body {
+    }
+    #hidebg {
+        position:absolute;
+        left:0px;
+        top:0px;
+        text-align: center;
+        background-color:#000;
+        width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+        filter:alpha(opacity=60);  /*设置透明度为60%*/
+        opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+        display:none;
+        z-Index:2;
+    }
+    #hidebox {
+        position:absolute;
+        width:400px;
+        height:300px;
+        top:200px;
+        left:40%;
+        text-align: center;
+        background-color:gray;
+        display:none;
+        cursor:pointer;
+        z-Index:3;
+    }
+</style>
+
+</head>
+                <!--隐藏层-->
+                <div id="hidebg"></div>
+                <div id="hidebox">请耐心等待...
+                    </br></br></br></br></br></br><button class="btn btn-primary" style="width: 200px;float: bottom" id="stop">终止</button>
+                </div>
+
+<body id="page-top">
+
+
+<!--顶部菜单栏-->
+<div th:replace="header"></div>
+
+
+<div id="wrapper">
+
+
+    <!--左侧菜单栏-->
+    <div th:replace="navBar"></div>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">参数优化启动</li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{/systemStartInit}">系统启动</a>
+                </li>
+                <li id="message" class="breadcrumb-item active" th:text="${result}"></li>
+            </ol>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <label>开始日期：<span style="color: red">*</span></label>
+                            <input id="dateStart" type="date" th:value="${beginDate}"/>
+                            <label>开始时间：<span style="color: red">*</span></label>
+                            <select id="timeFrom">
+                                <option th:selected="${beginTime == '0'}">0</option>
+                                <option th:selected="${beginTime == '1'}">1</option>
+                                <option th:selected="${beginTime == '2'}">2</option>
+                                <option th:selected="${beginTime == '3'}">3</option>
+                                <option th:selected="${beginTime == '4'}">4</option>
+                                <option th:selected="${beginTime == '5'}">5</option>
+                                <option th:selected="${beginTime == '6'}">6</option>
+                                <option th:selected="${beginTime == '7'}">7</option>
+                                <option th:selected="${beginTime == '8'}">8</option>
+                                <option th:selected="${beginTime == '9'}">9</option>
+                                <option th:selected="${beginTime == '10'}">10</option>
+                                <option th:selected="${beginTime == '11'}">11</option>
+                                <option th:selected="${beginTime == '12'}">12</option>
+                                <option th:selected="${beginTime == '13'}">13</option>
+                                <option th:selected="${beginTime == '14'}">14</option>
+                                <option th:selected="${beginTime == '15'}">15</option>
+                                <option th:selected="${beginTime == '16'}">16</option>
+                                <option th:selected="${beginTime == '17'}">17</option>
+                                <option th:selected="${beginTime == '18'}">18</option>
+                                <option th:selected="${beginTime == '19'}">19</option>
+                                <option th:selected="${beginTime == '20'}">20</option>
+                                <option th:selected="${beginTime == '21'}">21</option>
+                                <option th:selected="${beginTime == '22'}">22</option>
+                                <option th:selected="${beginTime == '23'}">23</option>
+                            </select></br>
+                            <label>结束日期：<span style="color: red">*</span></label>
+                            <input id="dateEnd" type="date" th:value="${afterDate}"/>
+                            <label>结束时间：<span style="color: red">*</span></label>
+                            <select id="timeTo">
+                                <option th:selected="${afterTime == '0'}">0</option>
+                                <option th:selected="${afterTime == '1'}">1</option>
+                                <option th:selected="${afterTime == '2'}">2</option>
+                                <option th:selected="${afterTime == '3'}">3</option>
+                                <option th:selected="${afterTime == '4'}">4</option>
+                                <option th:selected="${afterTime == '5'}">5</option>
+                                <option th:selected="${afterTime == '6'}">6</option>
+                                <option th:selected="${afterTime == '7'}">7</option>
+                                <option th:selected="${afterTime == '8'}">8</option>
+                                <option th:selected="${afterTime == '9'}">9</option>
+                                <option th:selected="${afterTime == '10'}">10</option>
+                                <option th:selected="${afterTime == '11'}">11</option>
+                                <option th:selected="${afterTime == '12'}">12</option>
+                                <option th:selected="${afterTime == '13'}">13</option>
+                                <option th:selected="${afterTime == '14'}">14</option>
+                                <option th:selected="${afterTime == '15'}">15</option>
+                                <option th:selected="${afterTime == '16'}">16</option>
+                                <option th:selected="${afterTime == '17'}">17</option>
+                                <option th:selected="${afterTime == '18'}">18</option>
+                                <option th:selected="${afterTime == '19'}">19</option>
+                                <option th:selected="${afterTime == '20'}">20</option>
+                                <option th:selected="${afterTime == '21'}">21</option>
+                                <option th:selected="${afterTime == '22'}">22</option>
+                                <option th:selected="${afterTime == '23'}">23</option>
+                            </select>
+                            <label>
+                                <span style="color: gray">(</span>
+                                <span style="color: red">*</span>
+                                <span style="color: gray">必填)</span>
+                            </label><br>
+                            <button class="btn btn-primary" style="width: 200px" id="startUp">启动</button>
+                            <button class="btn btn-primary" style="width: 200px;float: bottom" onclick="stop()">终止</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="form-group">
+                    <div class="form-row">
+
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <div id="log1" th:text="${log4}" style="height: 240px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+                                </div>
+                            </div>
+
+                            <ul id="myTab" class="nav nav-tabs">
+                            </ul>
+
+                            <div id="masall" class="form-label-group">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <div class="form-row" style="padding-top: 7px; padding-bottom: 3px">
+                                    &nbsp;<label>世代数：</label><label th:text="${generation_max}"></label>
+                                    &nbsp;<label>人口数：</label><label th:text="${population_size}"></label>
+                                    &nbsp;<label>模拟时间：</label><label th:text="${sim_duration}"></label>
+                                </div>
+                            </div>
+                            <div class="form-label-group">
+                                <div id="ga_log" style="height: 480px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Cards-->
+
+            <!-- Area Chart Example-->
+
+            <!-- DataTables Example -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!--底部信息栏-->
+        <div th:replace="bottom"></div>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Page level plugin JavaScript-->
+<script th:src="@{vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/sb-admin.min.js}"></script>
+
+<!-- Demo scripts for this page-->
+<script th:src="@{js/demo/datatables-demo.js}"></script>
+<script th:src="@{js/demo/chart-area-demo.js}"></script>
+
+<script th:src="@{js/sockjs.min.js}"></script>
+<script th:src="@{js/stomp.min.js}"></script>
+<script th:src="@{js/jedate.min.js}"></script>
+
+
+</body>
+</html>
