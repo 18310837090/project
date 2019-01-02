@@ -12,7 +12,7 @@ import numpy as np
 from imutils.perspective import four_point_transform
 
 
-# 轮廓拟合成直线
+# fitLine将轮廓拟合成直线
 def line_fitness(pts, image, color=(0, 0, 255)):
     h, w, ch = image.shape
     [vx, vy, x, y] = cv2.fitLine(np.array(pts), cv2.DIST_L1, 0, 0.01, 0.01)
@@ -20,6 +20,13 @@ def line_fitness(pts, image, color=(0, 0, 255)):
     y2 = int(((w - x) * vy / vx) + y)
     cv2.line(image, (w - 1, y2), (0, y1), color, 2)
     return image
+
+
+def show(winname, img):
+    cv2.namedWindow(winname, cv2.WINDOW_AUTOSIZE)
+    cv2.imshow(winname, img)
+    cv2.waitKey()
+    cv2.destroyWindow(winname)
 
 
 # 透视矫正
@@ -38,7 +45,7 @@ def perspective_transformation(img):
 
     # Canny边缘检测
     edged = cv2.Canny(dilate, 60, 120, 3)  # 修改滞后阈值30,120来设置线段检测精度
-    # cv2.imshow("edged", edged)
+    # show("edged", edged)
     # 寻找轮廓
     cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if imutils.is_cv2() else cnts[1]  # 判断是OpenCV2还是OpenCV3
@@ -55,8 +62,7 @@ def perspective_transformation(img):
             # 凸包绘制
             tubao = cv2.drawContours(img, [hull], -1, (0, 0, 255), 2)
             line_fitness(c, tubao, (0, 0, 255))
-            cv2.imshow("tubao", tubao)
-            cv2.waitKey(0)
+            show("tubao", tubao)
             # # 如果我们的近似轮廓有四个点，则确定找到了纸
             if len(approx) == 4:
                 docCnt = approx
@@ -82,8 +88,7 @@ def rotate_image(src, degree):
 def cal_degree(img):
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     canny_img = cv2.Canny(gray_img, 50, 200, 3)
-    cv2.imshow("canny_img", canny_img)
-    cv2.waitKey(0)
+    show("canny_img", canny_img)
 
     img_copy = img.copy()
 
@@ -110,8 +115,7 @@ def cal_degree(img):
             # 只选角度最小的作为旋转角度
             sum += theta
             cv2.line(img_copy, (x1, y1), (x2, y2), (0, 0, 255), 1, cv2.LINE_AA)
-            cv2.imshow("img_copy", img_copy)
-            cv2.waitKey(0)
+            show("img_copy", img_copy)
 
     # 对所有角度求平均，这样做旋转效果会更好
     average = sum / len(lines)
@@ -120,20 +124,12 @@ def cal_degree(img):
 
 
 if __name__ == '__main__':
-    # path = "picture/paper.jpeg"
-    # path = "picture/hudifu3.jpg"
-    # path = "picture/JapaneseLicense2.jpg"
-    path = "picture/xiaojing4.jpg"
-    # path = "picture/JapaneseLicense1.jpg"
-    # path = "picture/License.jpeg"
-    # path = "picture/paper4.jpeg"
-    # path = "picture/hudifu1.jpg"
-
+    path = "picture/xiaojing7.jpg"
     print "请输入操作:"
     a = input()
     image = cv2.imread(path)
-    # image = cv2.resize(image, (640, 480))
-    cv2.imshow("image", image)
+    # image = cv2.resize(image, (540, 720))
+    # show("image", image)
 
     if a == 1:
         # 倾斜角度校正
@@ -142,15 +138,11 @@ if __name__ == '__main__':
             print "拍摄角度超过45度,请重新拍摄！"
         else:
             rotate = rotate_image(image, degree)
-            cv2.imshow("rotate", rotate)
+            show("rotate", rotate)
             # 透视角度校正
             perspective_img = perspective_transformation(rotate)
-            cv2.imshow("perspective_img", perspective_img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            show("perspective_img", perspective_img)
     elif a == 2:
         # 透视角度校正
         perspective_img = perspective_transformation(image)
-        cv2.imshow("perspective_img", perspective_img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        show("perspective_img", perspective_img)
