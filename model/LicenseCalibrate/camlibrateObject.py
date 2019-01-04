@@ -130,14 +130,7 @@ def cal_degree(img):
 
 
 if __name__ == '__main__':
-    # path = "picture/paper4.jpeg"
-    # path = "picture/hudifu.jpg"
-    # path = "picture/JapaneseLicense2.jpg"
-    path = "picture/xiaojing4.jpg"
-    # path = "picture/JapaneseLicense1.jpg"
-    # path = "picture/License.jpeg"
-    # path = "picture/paper4.jpeg"
-    # path = "picture/hudifu1.jpg"
+    path = "picture/hudifu1.jpg"
 
     print "请输入操作:"
     a = input()

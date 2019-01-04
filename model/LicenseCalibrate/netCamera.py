@@ -8,7 +8,7 @@ while (1):
     if k == 27:
         break
     elif k == ord('s'):
-        cv2.imwrite('/usr/local/machine_learning/pycharm_workspace/recoveryLicense/' + str(i) + '.jpeg', frame)
+        cv2.imwrite(str(i) + '.jpg', frame)
         i += 1
     cv2.imshow("capture", frame)
 cap.release()
