@@ -5,12 +5,8 @@ description: 对车牌图片进行校正,使用位置定位确认
 date: 2019/1/2
 Author: xiaojing
 """
-import multiprocessing
 import os
-from PIL import Image
-
 import cv2
-import numpy as np
 
 
 def binarization(img):
@@ -105,19 +101,19 @@ def openCamera():
             print info5
 
             # 框选氏名
-            cv2.putText(frame_copy, info1, (60, 57), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+            cv2.putText(frame_copy, info1, (60, 77), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
             # 框选名字
-            cv2.putText(frame_copy, info2, (106, 57), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+            cv2.putText(frame_copy, info2, (106, 77), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
             # 框选住址
-            cv2.putText(frame_copy, info3, (106, 107), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+            cv2.putText(frame_copy, info3, (106, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
             # 框选文字“生”
-            cv2.putText(frame_copy, info4, (566, 57), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+            cv2.putText(frame_copy, info4, (566, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
             # 框选文字“二种”
-            cv2.putText(frame_copy, info5, (67, 343), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
+            cv2.putText(frame_copy, info5, (67, 360), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
             cv2.imshow("frame_copy", frame_copy)
 
