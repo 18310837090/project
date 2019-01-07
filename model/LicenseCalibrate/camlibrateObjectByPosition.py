@@ -21,15 +21,15 @@ def binarization(img):
     blurred = cv2.GaussianBlur(gray_img, (5, 5), 0)
 
     # 膨胀
-    dilate = cv2.dilate(blurred, cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2)))
+    dilate = cv2.dilate(blurred, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
     # 腐蚀
-    erode = cv2.erode(dilate, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
-    dilate1 = cv2.dilate(erode, cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2)))
+    # erode = cv2.erode(dilate, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
+    # 膨胀
+    # dilate1 = cv2.dilate(dilate, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
 
-    cv2.imshow("dilate1", dilate1)
-
-    # 二值化处理
-    ret, thresh = cv2.threshold(dilate1, 150, 180, cv2.THRESH_BINARY)
+    # 自适应阈值化能够根据图像不同区域亮度分布，改变阈值
+    thresh = cv2.adaptiveThreshold(dilate, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 25, 10)
+    cv2.imshow("thresh", thresh)
 
     return thresh
 
@@ -39,16 +39,15 @@ def openCamera():
     while (1):
         ret, frame = cap.read()
         frame_copy = frame.copy()
-        # frame = binarization(frame)
+        frame = binarization(frame)
         # 框选驾照
         cv2.rectangle(frame_copy, (45, 55), (600, 400), (0, 255, 0), 1)
-        # cv2.putText(frame_copy, "kaishi", (106, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
 
         image1 = frame[77:105, 60:106]
         image2 = frame[77:105, 106:400]
         image3 = frame[127:156, 106:584]
         image4 = frame[77:105, 566:584]
-        image5 = frame[363:386, 67:86]
+        image5 = frame[363:400, 60:90]
 
         # 框选氏名
         cv2.rectangle(frame_copy, (60, 77), (106, 105), (0, 255, 0), 1)
@@ -63,7 +62,7 @@ def openCamera():
         cv2.rectangle(frame_copy, (566, 77), (584, 105), (0, 255, 0), 1)
 
         # 框选文字“二种”
-        cv2.rectangle(frame_copy, (67, 363), (86, 386), (0, 255, 0), 1)
+        cv2.rectangle(frame_copy, (60, 363), (90, 390), (0, 255, 0), 1)
 
         cv2.imshow("frame_copy", frame_copy)
 
@@ -71,6 +70,17 @@ def openCamera():
         if key == 27:
             break
         elif key == ord('s'):
+
+            h = frame.shape[0]
+            w = frame.shape[1]
+
+            for row in range(h):  # 遍历高
+                for col in range(w):  # 遍历宽
+                    pv = frame[row, col]
+                    frame[row, col] = 255 - pv
+
+            cv2.imwrite("thresh.jpg", frame)
+
             cv2.destroyAllWindows()
 
             cv2.imwrite("image1.jpg", image1)
@@ -82,23 +92,18 @@ def openCamera():
 
             os.popen("tesseract image1.jpg image1 -l jpn -psd 7")
             info1 = read_file("image1.txt")
-            print info1
 
             os.popen("tesseract image2.jpg image2 -l jpn -psd 7")
             info2 = read_file("image2.txt")
-            print info2
 
             os.popen("tesseract image3.jpg image3 -l jpn -psd 7")
             info3 = read_file("image3.txt")
-            print info3
 
             os.popen("tesseract image4.jpg image4 -l jpn -psd 7")
             info4 = read_file("image4.txt")
-            print info4
 
             os.popen("tesseract image5.jpg image5 -l jpn -psd 7")
             info5 = read_file("image5.txt")
-            print info5
 
             # 框选氏名
             cv2.putText(frame_copy, info1, (60, 77), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 1)
@@ -122,18 +127,21 @@ def openCamera():
 
 
 def read_file(file):
+    global result
     result = ""
     with open((os.path.join(file)), 'r') as f:
         data = f.readlines()
         for line in data:
-            odom = line.split()
-            tmp_str = "".join(odom)
-            result = result.join(tmp_str.split())
-            print result
+            odom = line.replace(' ', '').replace('\n', '')
+            result += odom
     return result
 
 
 if __name__ == '__main__':
     openCamera()
-    # os.popen("tesseract image3.jpg image3 -l chi_sim")
+    # os.popen("tesseract image1.jpg image1 -l jpn")
+    # os.popen("tesseract image2.jpg image2 -l jpn")
+    # os.popen("tesseract image3.jpg image3 -l jpn")
+    # os.popen("tesseract image4.jpg image4 -l jpn")
+    # os.popen("tesseract picture/hello.tiff image5 -l jpn")
     # read_file("image3.txt")
