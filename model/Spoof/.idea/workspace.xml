@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83e271ec-44d2-489d-9938-75d9d5e1e777" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/models/0.2_4rbf.model" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/0.2_4rgbonly.model" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LicenseCalibrate/camlibrateObjectByPosition.py" beforeDir="false" afterPath="$PROJECT_DIR$/../LicenseCalibrate/camlibrateObjectByPosition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LicenseCalibrate/netCamera.py" beforeDir="false" afterPath="$PROJECT_DIR$/../LicenseCalibrate/netCamera.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Spoof$456.coverage" NAME="456 Coverage Results" MODIFIED="1547631895729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$flask_server_test_backup.coverage" NAME="flask_server_test_backup Coverage Results" MODIFIED="1548154001811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$netCamera.coverage" NAME="netCamera Coverage Results" MODIFIED="1547706027853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$flask_server_test.coverage" NAME="flask_server_test Coverage Results" MODIFIED="1548153682529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$tools.coverage" NAME="tools Coverage Results" MODIFIED="1547031221042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$TakeVideo.coverage" NAME="TakeVideo Coverage Results" MODIFIED="1547021139473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$detect_face.coverage" NAME="detect_face Coverage Results" MODIFIED="1547021492797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$train_RGB_SVM.coverage" NAME="train_RGB_SVM Coverage Results" MODIFIED="1547205010956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spoof$TakeRGB.coverage" NAME="TakeRGB Coverage Results" MODIFIED="1548146576911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/flask_server_test_backup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="77" column="36" lean-forward="true" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
+              <folding>
+                <element signature="e#46#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cv2.imsho</find>
+      <find>ca</find>
+      <find>suff</find>
+      <find>glcm</find>
+      <find>file_path, name, 'face_'+name)</find>
+      <find>size</find>
+      <find>test_image</find>
+      <find>Screen</find>
+      <find>trainDataSet_ClientFace</find>
+      <find>test</find>
+      <find>glob</find>
+      <find>takeface</find>
+      <find>if 'rg</find>
+      <find>'rgb</find>
+      <find>capture</find>
+      <find>getLbp_block</find>
+      <find>getFS</find>
+      <find>win</find>
+      <find>captu</find>
+      <find>getFace</find>
+      <find>use_fft</find>
+      <find>rbf</find>
+      <find>cap</find>
+      <find>135</find>
+      <find>detecc</find>
+      <find>resi</find>
+      <find>main</find>
+      <find>request</find>
+      <find>42</find>
+      <find>start_num</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/detect_face.py" />
+        <option value="$PROJECT_DIR$/svmWithFsLbp.py" />
+        <option value="$PROJECT_DIR$/fft/temp_fft.py" />
+        <option value="$PROJECT_DIR$/TakeVideo.py" />
+        <option value="$PROJECT_DIR$/TakeRGB.py" />
+        <option value="$PROJECT_DIR$/train_SVM.py" />
+        <option value="$PROJECT_DIR$/tools.py" />
+        <option value="$PROJECT_DIR$/readme" />
+        <option value="$PROJECT_DIR$/train_RGB_SVM.py" />
+        <option value="$PROJECT_DIR$/123.py" />
+        <option value="$PROJECT_DIR$/netCamera.py" />
+        <option value="$PROJECT_DIR$/456.py" />
+        <option value="$PROJECT_DIR$/TakeRGBVideo.py" />
+        <option value="$PROJECT_DIR$/flask_server_test.py" />
+        <option value="$PROJECT_DIR$/flask_server_test_backup.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1800" />
+    <option name="y" value="-4" />
+    <option name="width" value="1918" />
+    <option name="height" value="1013" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Spoof" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spoof" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Spoof" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spoof" type="462c0819:PsiDirectoryNode" />
+              <item name="NCITfake" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Spoof" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spoof" type="462c0819:PsiDirectoryNode" />
+              <item name="Testimg" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线" />
+      <recent name="$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集/正常光线" />
+      <recent name="$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集" />
+      <recent name="$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集/过亮光线" />
+      <recent name="$PROJECT_DIR$/models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集" />
+      <recent name="$PROJECT_DIR$/NCITfake" />
+      <recent name="$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集" />
+      <recent name="$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.flask_server_test_backup">
+    <configuration name="456" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Liveness" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/456.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TakeRGB" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Liveness" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TakeRGBVideo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flask_server_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Liveness" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask_server_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flask_server_test_backup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Liveness" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask_server_test_backup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="netCamera" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Liveness" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/netCamera.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.flask_server_test_backup" />
+        <item itemvalue="Python.flask_server_test" />
+        <item itemvalue="Python.TakeRGB" />
+        <item itemvalue="Python.netCamera" />
+        <item itemvalue="Python.456" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83e271ec-44d2-489d-9938-75d9d5e1e777" name="Default Changelist" comment="" />
+      <created>1545814873926</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545814873926</updated>
+      <workItem from="1547000666853" duration="21227000" />
+      <workItem from="1547029972029" duration="33926000" />
+      <workItem from="1547187503708" duration="29516000" />
+      <workItem from="1547547355046" duration="4960000" />
+      <workItem from="1547606801671" duration="12168000" />
+      <workItem from="1547629580964" duration="3587000" />
+      <workItem from="1547633244857" duration="1699000" />
+      <workItem from="1547691862695" duration="12687000" />
+      <workItem from="1547713458069" duration="1763000" />
+      <workItem from="1547715252132" duration="1799000" />
+      <workItem from="1547717081690" duration="1797000" />
+      <workItem from="1547718897328" duration="1811000" />
+      <workItem from="1547720759525" duration="2082000" />
+      <workItem from="1547723540881" duration="1716000" />
+      <workItem from="1548036025673" duration="1749000" />
+      <workItem from="1548038671826" duration="1076000" />
+      <workItem from="1548041120040" duration="1437000" />
+      <workItem from="1548044441541" duration="1832000" />
+      <workItem from="1548046295131" duration="1840000" />
+      <workItem from="1548048156087" duration="1796000" />
+      <workItem from="1548049971639" duration="1867000" />
+      <workItem from="1548051864279" duration="1803000" />
+      <workItem from="1548053740743" duration="1794000" />
+      <workItem from="1548055634903" duration="1801000" />
+      <workItem from="1548057454536" duration="1814000" />
+      <workItem from="1548059287689" duration="1653000" />
+      <workItem from="1548061481428" duration="1380000" />
+      <workItem from="1548063994360" duration="1049000" />
+      <workItem from="1548066297888" duration="1418000" />
+      <workItem from="1548068151980" duration="1794000" />
+      <workItem from="1548069965466" duration="1814000" />
+      <workItem from="1548071802305" duration="1180000" />
+      <workItem from="1548121999056" duration="1496000" />
+      <workItem from="1548124051386" duration="620000" />
+      <workItem from="1548126657336" duration="1839000" />
+      <workItem from="1548133648323" duration="1792000" />
+      <workItem from="1548135458856" duration="1844000" />
+      <workItem from="1548137320964" duration="1818000" />
+      <workItem from="1548139159371" duration="1793000" />
+      <workItem from="1548140977028" duration="1791000" />
+      <workItem from="1548142794769" duration="1793000" />
+      <workItem from="1548144667510" duration="1859000" />
+      <workItem from="1548146545517" duration="1168000" />
+      <workItem from="1548149640237" duration="2010000" />
+      <workItem from="1548151667051" duration="1793000" />
+      <workItem from="1548153479249" duration="638000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="182089000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1919" y="-11" width="1922" height="1029" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2284345" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32925472" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21579532" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.43270302" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32925472" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32925472" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32925472" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32925472" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2496361" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
+      <window_info anchor="bottom" id="Python Console" order="3" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.3293556" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/flask_server_test.py</url>
+          <line>291</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/flask_server_test_backup.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集/过亮光线/yangtaihao_feihuoti_01/face/603_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集/过亮光线/yangtaihao_feihuoti_02/face/0_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集/lining_zhengchang/face/1010_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集/lining_zhengchang/face/1010_rout.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集/lining_zhengchang/face/1011_rout.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集/lining_zhengchang/face/1012_rout.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/活体测试集/正常光线数据集/lining_zhengchang/face/1023_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/彩色纸张数据集/过亮光线/liangxiao_feihuoti_01/face/606_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/585_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/585_rout.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/586_rout.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/587_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/587_rout.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/588_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/588_rout.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/gaohe_feihuoti_01/face/589_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/123/face/8_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/123/face/22_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/123/face/0_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/123/face/1_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/123/face/2_rgb.png" />
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/100_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/101_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/103_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/108_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/0_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/1_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/3_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/5_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/16_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/17_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/19_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/34_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/46_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/48_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/51_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_01/face/4_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/100_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/147_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/148_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/166_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/187_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/186_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/detect_face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/192_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/191_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCITfake/非活体测试集/电子屏幕数据集/过暗光线/shenyuming_screen_02/face/190_rgb.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask_server_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="265" column="23" selection-start-line="265" selection-start-column="23" selection-end-line="265" selection-end-column="23" />
+          <folding>
+            <element signature="e#46#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TakeRGBVideo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#47#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask_server_test_backup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="77" column="36" lean-forward="true" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
+          <folding>
+            <element signature="e#46#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
