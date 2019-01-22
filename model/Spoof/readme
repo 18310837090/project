@@ -1,0 +1,73 @@
+「梁潇: 訓練數據：NUAA：240-/home/liangxiao/data/NUAA/Detectedface
+自己採集的：240-/home/liangxiao/data/NCITSpoof
+代碼FasNet：240-/home/liangxiao/project/FASNet.tar.gz
+
+Spoof是SVM，python2.7，要裝opencv，numpy，sklearn，matplotlib
+FASNet，python3.5，tensorflow-gpu，keras，具體參考https://github.com/OeslleLucena/FASNet
+」
+—————————
+
+
+
+「cool: def main(p):
+
+        # if p is 1:
+        # t1 = threading.Thread(target=xiancheng1, args=())
+        # t2 = threading.Thread(target=xiancheng2, args=())
+        # t3 = threading.Thread(target=xiancheng3, args=())
+        # t4 = threading.Thread(target=xiancheng4, args=())
+        # t1.start()
+        # t2.start()
+        # t3.start()
+        # t4.start()
+        # t1.join()
+        # t2.join()
+        # t3.join()
+        # t4.join()
+
+    host = '192.168.4.42'
+    flg = True
+    port = 8080
+    base_url = 'http://{}:{}/face/'.format(host, port)
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+    number = 0
+    print("ssssssssssssssssssssssssssssssssssssssss")
+    # p = 1
+    if p is 1:
+        # filename = 'C:\\Users\\chenzy\\Desktop\\yanghaoran\\image\\true10.jpg'
+        filename = 'C:\\Users\\chenzy\\Desktop\\yanghaoran\\image\\true3.jpg'
+
+        src = ''
+        with open(filename, "rb") as f:
+            # b64encode是编码，b64decode是解码
+            src = base64.b64encode(f.read())
+            print(src)
+            #src = ''
+
+        if flg:
+            star = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
+            while number < 10:
+                star_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
+
+                url = base_url + 'register'
+                values = {'imageId': '00555',
+                          'faces': [src]}
+
+                j_data = json.dumps(values, cls=MyEncoder)
+                j_data = bytes(j_data, 'utf8')
+
+                res = jsonPost(url, j_data, headers)
+                data = json.loads(res[1])
+
+                score = 0
+                if data:
+                    # print(data['errno'])
+                    if data['errno'] == '0':
+                        # has_key方法在python2中是可以使用的，在python3中删除了。
+                        # if data["data"].has_key("score"):
+                        if "score" in data["data"]:
+                            score = data["data"]["score"]
+                score = data["data"]["score"]
+                print("分值:" + sc」
+—————————
+
